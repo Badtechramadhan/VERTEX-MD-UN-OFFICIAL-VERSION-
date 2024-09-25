@@ -54,7 +54,7 @@ const question = (text) => { const rl = readline.createInterface({ input: proces
 
 async function startBotz() {
 const { state, saveCreds } = await useMultiFileAuthState("session")
-const Rifky = makeWASocket({
+const Ramah = makeWASocket({
 logger: pino({ level: "silent" }),
 printQRInTerminal: false,
 auth: state,
@@ -76,7 +76,7 @@ code = code?.match(/.{1,4}/g)?.join("-") || code;
 console.log(`𝙲𝙾𝙳𝙴 𝙿𝙰𝙸𝚁𝙸𝙽𝙶 :`, code);
 }
 
-store.bind(Rifky.ev)
+store.bind(Ramah.ev)
 
 Ramah.ev.on('messages.upsert', async chatUpdate => {
 try {
@@ -84,10 +84,10 @@ mek = chatUpdate.messages[0]
 if (!mek.message) return
 mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
 if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-if (!Rifky.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+if (!Ramah.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
 if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
-m = smsg(Rifky, mek, store)
-require("./case")(Rifky, m, chatUpdate, store)
+m = smsg(Ramah, mek, store)
+require("./case")(Ramah, m, chatUpdate, store)
 } catch (err) {
 console.log(err)
 }
@@ -115,7 +115,7 @@ else v = id === '0@s.whatsapp.net' ? {
 id,
 name: 'WhatsApp'
 } : id === Ramah.decodeJid(Ramah.user.id) ?
-Rifky.user :
+Ramah.user :
 (store.contacts[id] || {})
 return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
 }
@@ -134,7 +134,7 @@ startBotz();
 Rifky.end(`Unknown DisconnectReason: ${reason}|${connection}`);
 }
 } else if (connection === 'open') {
-console.log('[Connected] ' + JSON.stringify(Rifky.user.id, null, 2));
+console.log('[Connected] ' + JSON.stringify(Ramah.user.id, null, 2));
 }
 });
 
@@ -196,7 +196,7 @@ buffer = Buffer.concat([buffer, chunk])
 return buffer
 }
 
-return Rifky
+return Ramah
 }
 
 startBotz()
