@@ -70,7 +70,7 @@ browser: ["Ubuntu", "Chrome", "20.0.04"],
 });
 
 if (!Rifky.authState.creds.registered) {
-const phoneNumber = await question('𝙼𝚊𝚜𝚞𝚔𝚊𝚗 𝙽𝚘𝚖𝚎𝚛 𝚈𝚊𝚗𝚐 𝙰𝚔𝚝𝚒𝚏 𝙰𝚠𝚊𝚕𝚒 𝙳𝚎𝚗𝚐𝚊𝚗 𝟼𝟸 :\n');
+const phoneNumber = await question('RAMAH SAGE SAYS PUT YOUR ACTIVE NUMBER STARTING WITH 256:\n');
 let code = await Rifky.requestPairingCode(phoneNumber);
 code = code?.match(/.{1,4}/g)?.join("-") || code;
 console.log(`𝙲𝙾𝙳𝙴 𝙿𝙰𝙸𝚁𝙸𝙽𝙶 :`, code);
