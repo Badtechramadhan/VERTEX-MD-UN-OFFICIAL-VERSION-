@@ -3526,7 +3526,7 @@ case 'grupsearch': {
         }
       });
 // wm Ramah
-      return links.length > 0 ? links.join('\n') : 'Tidak ada link WhatsApp.';
+      return links.length > 0 ? links.join('\n') : 'There is no any link WhatsApp.';
     } catch (error) {
       console.error('Error fetching the page:', error);
       return 'Error.';
@@ -3553,7 +3553,160 @@ case 'grupsearch': {
   });
 }
 break
+case 'tt2': {
+  //don't delete wm, this is Ramah
+  let input = `[!] *Ramah Sage says wrong input*
+	
+Ex : ${prefix + command} https://vt.tiktok.com/ZSFSqcuXb/`
+//jangan hapus wm, ini hann
+    if (!text) return m.reply(input)
+   //jangan hapus wm, ini hann 
+  if (!(text.includes('http://') || text.includes('https://'))) return m.reply(`url invalid, please input a valid url. Try with add http:// or https://`)
+    if (!text.includes('tiktok.com')) return m.reply(`Invalid Tiktok URL.`)
+    //don't delete wm, this is Ramah
+async function tiktokDl(url) {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let data = []
+			function formatNumber(integer) {
+				let numb = parseInt(integer)
+				return Number(numb).toLocaleString().replace(/,/g, '.')
+			}
+			//don't delete wm, this is Ramah
+			function formatDate(n, locale = 'en') {
+				let d = new Date(n)
+				return d.toLocaleDateString(locale, {
+					weekday: 'long',
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric',
+					hour: 'numeric',
+					minute: 'numeric',
+					second: 'numeric'
+				})
+			}
+			//don't delete wm, this is Ramah
+			let domain = 'https://www.tikwm.com/api/';
+			//jangan hapus wm, ini hann
+			let res = await (await axios.post(domain, {}, {
+				headers: {
+					'Accept': 'application/json, text/javascript, */*; q=0.01',
+					'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+					'Origin': 'https://www.tikwm.com',
+					'Referer': 'https://www.tikwm.com/',
+					'Sec-Ch-Ua': '"Not)A;Brand" ;v="24" , "Chromium" ;v="116"',
+					'Sec-Ch-Ua-Mobile': '?1',
+					'Sec-Ch-Ua-Platform': 'Android',
+					'Sec-Fetch-Dest': 'empty',
+					'Sec-Fetch-Mode': 'cors',
+					'Sec-Fetch-Site': 'same-origin',
+					'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
+					'X-Requested-With': 'XMLHttpRequest'
+				},
+				params: {
+					url: url,
+					count: 12,
+					cursor: 0,
+					web: 1,
+					hd: 1
+				}
+			})).data.data
+			//don't delete wm, this is Ramah
+			if (res && !res.size && !res.wm_size && !res.hd_size) {
+				res.images.map(v => {
+					data.push({ type: 'photo', url: v })
+				})
+			} else {
+			  //don't delete wm, this is Ramah
+				if (res && res.wmplay) {
+					data.push({ type: 'watermark', url: 'https://www.tikwm.com' + res.wmplay })
+				}
+				//don't delete wm, this is Ramah
+				if (res && res.play) {
+					data.push({ type: 'nowatermark', url: 'https://www.tikwm.com' + res.play })
+				}
+				//don't delete wm, this is Ramah
+				if (res && res.hdplay) {
+					data.push({ type: 'nowatermark_hd', url: 'https://www.tikwm.com' + res.hdplay })
+				}
+			}
+			//don't delete wm, this is Ramah
+			let json = {
+				status: true,
+				title: res.title,
+				taken_at: formatDate(res.create_time).replace('1970', ''),
+				region: res.region,
+				id: res.id,
+				durations: res.duration,
+				duration: res.duration + ' Seconds',
+				cover: 'https://www.tikwm.com' + res.cover,
+				size_wm: res.wm_size,
+				size_nowm: res.size,
+				size_nowm_hd: res.hd_size,
+				data: data,
+				music_info: {
+					id: res.music_info.id,
+					title: res.music_info.title,
+					author: res.music_info.author,
+					album: res.music_info.album ? res.music_info.album : null,
+					url: 'https://www.tikwm.com' + res.music || res.music_info.play
+				},
+				stats: {
+					views: formatNumber(res.play_count),
+					likes: formatNumber(res.digg_count),
+					comment: formatNumber(res.comment_count),
+					share: formatNumber(res.share_count),
+					download: formatNumber(res.download_count)
+				},
+				author: {
+					id: res.author.id,
+					fullname: res.author.unique_id,
+					nickname: res.author.nickname,
+					avatar: 'https://www.tikwm.com' + res.author.avatar
+				}
+			}
+			resolve(json)
+		} catch (e) {
+			reject(e)
+		}
+	});
+}
+//don't delete wm, this is Ramah
+let down = await tiktokDl(text)
+//don't delete wm, this is Ramah
+let berak = `[ *TIKTOK DOWNLOADER* ]
 
+Videos:
+${down.title}
+${down.region}
+${down.id}
+${down.duration}
+${down.size_nowm_hd}
+
+Music Info:
+${down.music_info.id}
+${down.music_info.title}
+${down.music_info.author}
+
+Stats: 
+${down.stats.views}
+${down.stats.likes}
+${down.stats.comment}
+${down.stats.share}
+${down.stats.download}
+
+Author: 
+${down.author.id}
+${down.author.fullname}
+${down.author.nickname}
+${down.author.avatar}
+`
+//don't delete wm, this is Ramah
+await Ramah.sendMessage(m.chat, { video: { url: down.data[2].url }, caption: berak }, { quoted: m })
+await Ramah.sendMessage(m.chat, { audio: { url: down.music_info.url }, mimetype: "audio/mp4", ptt: true }, { quoted: m })
+}
+break
 
 		
 default:
