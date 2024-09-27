@@ -103,7 +103,7 @@ message: {
 newsletterAdminInviteMessage: {
 newsletterJid: '120363335392141844@newsletter',
     newsletterName: '',
-    caption: `${namabot} | 2022 - 2025`
+    caption: `${namabot} | 2024 - 2026`
 }}}
 const reply = (teks) => { 
 Ramah.sendMessage(from, { text: teks, contextInfo:{
@@ -190,30 +190,240 @@ case 'menu': case 'help': case 'allmenu': case 'han':{
     Ramah.sendMessage(m.chat, { audio: kntll, mimetype: "audio/mp4", ptt: true }, { quoted: m })
 Ramah.sendMessage(from, {react: {text: randomReaction, key: m.key}})
 let anu = `
+⌜ \` 𝐑𝐀𝐌𝐀𝐇 𝐒𝐀𝐆𝐄 𝐀𝐋𝐏𝐇𝐀  \`⌟
+𝗛𝐞𝐥𝐥𝐨 *${pushname}*
+ *${timee}*
+ *${hariini}*
 > *乂 INFO BOT*
-Nama Bot: ${global.namabot}
-Versi: 1.5
+Name Bot: ${global.namabot}
+𝐎𝐰𝐧 : ${global.namaown}
+𝐕𝐞𝐫𝐬𝐢𝐨𝐧 : ${global.versisc}
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msgii = generateWAMessageFromContent(m.chat, {
+    viewOnceMessage: {
+        message: {
+            "messageContextInfo": {
+                "deviceListMetadata": {},
+                "deviceListMetadataVersion": 2
+            },
+            interactiveMessage: proto.Message.InteractiveMessage.create({
+                body: proto.Message.InteractiveMessage.Body.create({
+                    text: dispMenu
+                }),
+                  'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+    buttons: [
+        {
+            name: "single_select",
+            buttonParamsJson: JSON.stringify({
+                title: "Ramah| MenuList",
+                sections: [
+                    {
+                        title: "⿻ Gᴇɴᴇʀᴀʟ",
+                        rows: [
+                            { header: "Menu-AI", title: "!Display Menu AI", description: "[ # ] RamahSage", id: ".menuai" },
+                            { header: "Menu-Downloader", title: "!Display Menu Downloader", description: "[ # ] RamaSage", id: ".menudownloader" },
+                            { header: "Menu-Tools", title: "!Display Menu Tools", description: "[ # ] RamahSage", id: ".menutools" },
+                            { header: "Menu-Islam", title: "!Display Menu Islam", description: "[ # ] RamahSage", id: ".menuislam" },
+                            { header: "Menu-Pict", title: "!Display Menu Pict", description: "[ # ] RamahSage", id: ".menupict" }
+                            { header: "Pushkontak", title: "!Display Pushkontak", description: "[ # ] RamahSage", id: ".pushkontak" },
+                        ]
+                    }
+                ]
+            })
+        },
+        {
+            name: "single_select",
+            buttonParamsJson: JSON.stringify({
+                title: "Ramah| OtherMenu",
+                sections: [
+                    {
+                        title: "⿻ 𝐎𝐓𝐇𝐄𝐑",
+                        rows: [
+                            { header: "𝐌𝐄𝐍𝐔-𝐎𝐖𝐍𝐄𝐑", title: "!Display Menu Owner", description: "[ # ] RamahSage", id: ".menuowner" },
+                            { header: "𝐌𝐄𝐍𝐔-𝐅𝐔𝐍", title: "!Display Menu Fun", description: "[ # ] RamahSage", id: ".menufun" },
+                            { header: "𝐌𝐄𝐍𝐔-𝐂𝐇𝐀𝐍𝐆𝐄𝐑", title: "!Display Menu Changer", description: "[ # ] RamahSage", id: ".menuchanger" },
+                                                ]
+                                            }
+                                        ]
+                                    })
+                                }
+                            ]
+                        }),
+                contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                                  forwardedNewsletterMessageInfo: {
+            newsletterJid: my.idCH,
+            newsletterName: 'RamahSage-Always4U',
+                        },
+                    externalAdReply: {
+                        title: "Special.Project V1.0",
+                        body: "",
+                        thumbnailUrl: global.painlogo, 
+                        thumbnail: anjay,
+                        sourceUrl: 'https://kingpainzy-developer.xyz',
+                        previewType: "VIDEO",
+                        showAdAttribution: true,
+                        mediaType: 1,
+                        renderLargerThumbnail: true
+                      }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU AI*
-• gemini
-• morphic
-• songai
-• tomoe
-• prodia
-• editee
+    await Ramah.relayMessage(msgii.key.remoteJid, msgii.message, {
+        messageId: msgii.key.id
+    });
+    await sleep(1000)
+Ramah .sendMessage(m.chat, {react: {text: '🦊', key: m.key}})
+    }
+    break
+    
+    case 'menuai': {
+menuai = `  ❮ \`𝐌𝐄𝐍𝐔 𝐀𝐈\` ❯
+${global.simbol} gemini
+${global.simbol} morphic
+${global.simbol} songai
+${global.simbol} tomoe
+${global.simbol} prodia
+${global.simbol} editee
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menuai
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+           }),  
+       contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU DOWNLOADER*
-• tiktok
-• igmp4
-• videy
-• gdrive
-• sfile
-• mediafire
-• aio
-• ttslide
-• igdl
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
 
-> *乂 MENU TOOLS*
+case 'menudownloader': {
+menudownloader = `  ❮ \`𝐌𝐄𝐍𝐔 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑\` ❯
+${global.simbol} tiktok
+${global.simbol} igmp4
+${global.simbol} video
+${global.simbol} gdrive
+${global.simbol} sfile
+${global.simbol} aio
+${global.simbol} ttslide
+${global.simbol} igdl
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menudowloader
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+           }),   
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
+
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+
+case 'menutools': {
+menutools = `  ❮ \`𝐌𝐄𝐍𝐔 𝐓𝐎𝐎𝐋𝐒\` ❯
 • play
 • pin
 • gsmarena
@@ -252,14 +462,130 @@ Versi: 1.5
 • top4top
 • chord
 • ttsearch
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menutools
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],]
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU ISLAM
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+
+case 'menuislam': {
+menuislam = `  ❮ \`𝐌𝐄𝐍𝐔 𝐈𝐒𝐋𝐀𝐌\` ❯
 • quran
 • doaharian
 • kisahnabi
 • surah
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menuislam
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU PICT
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+
+case 'menupict': {
+menupict = `  ❮ \`𝐌𝐄𝐍𝐔 𝐏𝐈𝐂𝐓\` ❯
 • waifu
 • wallhp
 • akira
@@ -343,24 +669,195 @@ Versi: 1.5
 • yuki
 • yulibocil
 • yumeko
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menupict
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                                   'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU OWNER*
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+
+case 'menuowner': {
+menuowner = `  ❮ \`𝐌𝐄𝐍𝐔 𝐎𝐖𝐍𝐄𝐑\` ❯
 • self
 • public
 • everyone
 • join
 • userjid
 • sendfitur
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menuowner
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU FUN
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+    
+case 'menufun': {    
+menufun = `  ❮ \`𝐌𝐄𝐍𝐔 𝐅𝐔𝐍\` ❯
 • top
 • putar
 • yesorno
+> © ${namabot} 2024 - 2026
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menufun
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
 
-> *乂 MENU B̻̭̻̜̥̫̫͍̲̪̪̠̠͙̦͙̞̤̠͇̺̘̯U̲̠̳͈͖̱͓̻G͈͖̣̺̪͚͓͉͍̙̻͖̟͕
-• b̽̋̇̈́̾ͯͬͥ̂̌ͤ͗ͯ̀̎̀̄ͬͥͨ̑̚r̾̀̉̌̾̄̈́͛͒ͣ̒̉͑͑̆ͤ͌ͭ͋̔ͯ̔ͬ͑ͬͥͥ̄ͪ̋ͤu͗ͩ̅͊̊̾̑͗ͧ́͛̍̌̽͆̐̏ͯͪ́̇ͬ͂͋t̉̉ͫ̆ͩͭ̊͋͊̓̇ͮͦ̔ͥͥ̏̉̏̇̄̇͆ͨa̓̌̉̑͂ͭ͌ͦ͑̑̅̌ͩ̐̎͆͑͛͐͆͆͊ͫ̄̂ͦ̍ͬ͑ͯ̈́̇ͭ́̏̐̅̾́̏̇l̈ͮ̑ͭ͌͆ͫ́̎̆ͧͬͥ͒̐ͩ̀͌̒ͫ̃̅̿
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
 
-> *乂 MENU CHANGER
+case 'menuchanger': {
+menuchanger = `  ❮ \`𝐌𝐄𝐍𝐔 𝐂𝐇𝐀𝐍𝐆𝐄𝐑\` ❯
 • bass
 • blown
 • deep
@@ -373,47 +870,139 @@ Versi: 1.5
 • slow
 • smooth
 • squirrel
-
-𝕮𝖗𝖊𝖆𝖙𝖊𝖉 𝖆𝖓𝖉 𝖈𝖔𝖒𝖕𝖎𝖑𝖊𝖉 𝖇𝖞 𝕽𝖆𝖒𝖆𝖍 𝕾𝖆𝖌𝖊-𝕿𝖍𝖊 𝖆𝖑𝖕𝖍𝖆
-
 > © ${namabot} 2024 - 2026
-┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
-let messageContent = generateWAMessageFromContent(m.chat, {
-      'viewOnceMessage': {
-        'message': {
-          'messageContextInfo': {
-            'deviceListMetadata': {},
-            'deviceListMetadataVersion': 2
-          },
-          'interactiveMessage': proto.Message.InteractiveMessage.create({
-            'body': proto.Message.InteractiveMessage.Body.create({
-              'text': anu
-            }),
-            'footer': proto.Message.InteractiveMessage.Footer.create({
-              'text': ''
-            }),
-            'header': proto.Message.InteractiveMessage.Header.create({
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: menuchanger
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
                 ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
                   'title': ``,
                   'gifPlayback': true,
                   'subtitle': global.namabot,
                   'hasMediaAttachment': false  
             }),
-            'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              'buttons': [{
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
                 'name': "cta_url",
                 'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
               }],
-              'messageParamsJson': "\0"
-            })
-          })
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
         }
-      }
-    }, {});
+    }, { userJid: m.sender, quoted: pain });
 
-    return await Ramah.relayMessage(m.chat, messageContent.message, {})
- }
-break;
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
+
+case 'pushkontak': {
+pushkontak =  `  ❮ \`𝐏𝐔𝐒𝐇𝐂𝐎𝐍𝐓𝐀𝐂𝐓\` ❯
+*⥁*${prefix}jpm *teks*
+*⥁*${prefix}jpm2 *teks*
+*⥁*${prefix}idgc
+*⥁*${prefix}listidgc
+*⥁*${prefix}cekidgc
+*⥁*${prefix}listgroup
+*⥁*${prefix}ceknamagc
+*⥁*${prefix}infogc
+*⥁*${prefix}pushkontakid *ID|TEXT*
+*⥁*${prefix}pushkontakgc *TEXT*
+*⥁*${prefix}pushkontakidjd *ID|JEDA|TEXT*
+*⥁*${prefix}pushkontakgcjd *JEDA|TEXT*
+*⥁*${prefix}savecontactid 
+*⥁*${prefix}savecontactgc
+*⥁*${prefix}savekontak
+*⥁*${prefix}sendkontak
+*⥁*${prefix}save *|nama*
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✧`
+let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                messageContextInfo: {
+                    deviceListMetadata: {},
+                    deviceListMetadataVersion: 2
+                },
+                interactiveMessage: proto.Message.InteractiveMessage.create({
+                    body: proto.Message.InteractiveMessage.Body.create({
+                        text: pushkontak
+                    }),
+                      'header': proto.Message.InteractiveMessage.Header.create({
+                ...(await prepareWAMessageMedia({ image : fs.readFileSync('./thumb.png')}, { upload: Ramah.waUploadToServer})), 
+                  'title': ``,
+                  'gifPlayback': true,
+                  'subtitle': global.namabot,
+                  'hasMediaAttachment': false  
+            }),
+                      'nativeFlowMessage': proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                          'buttons': [{
+                'name': "cta_url",
+                'buttonParamsJson': "{\"display_text\":\"\",\"url\":\"https://www.google.com\",\"merchant_url\":\"https://www.google.com\"}"
+              }],
+                    }),
+                    contextInfo: {
+                        isForwarded: false,
+                        mentionedJid: [m.sender, owner + "@s.whatsapp.net"],
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: my.idCH,
+                            newsletterName: 'RamahSage-Always4U',
+                        },
+                        externalAdReply: {
+                            title: "Special.Project",
+                            body: "",
+                            thumbnailUrl: global.painlogo,
+                            thumbnail: anjay,
+                            sourceUrl: 'https://kingpainzy-developer.xyz',
+                            previewType: "VIDEO",
+                            showAdAttribution: true,
+                            mediaType: 1,
+                            renderLargerThumbnail: true
+                        }
+                    }
+                })
+            }
+        }
+    }, { userJid: m.sender, quoted: pain });
+
+    await Ramah.relayMessage(msg.key.remoteJid, msg.message, {
+        messageId: msg.key.id
+    });
+    await sleep(1000)
+Ramah.sendMessage(m.chat, {react: {text: '🔱', key: m.key}})
+    }
+    break
 
 case 'tiktoksearch':
 case 'ttsearch': {
@@ -2853,7 +3442,7 @@ const sendToGemini = async (prompt) => {
     }
     }
     break
-        case 'videy' : {
+        case 'video' : {
 if (!args[0]) {
     return m.reply(`• Contoh: ${prefix + command} https://videy.co/v?id=K7wdQnbm`);
   }
@@ -3418,6 +4007,70 @@ let { youtube } = require("btch-downloader");
  }
 };
 break
+
+case "listgroup":{
+if (!isOwner) return (`Ngapain ? Khusus Ramah Aja !!`)
+let getGroups = 
+await Ramah groupFetchAllParticipating()
+let groups = Object.entries(getGroups).slice(0).map((entry) => entry[1])
+let anu = groups.map((v) => v.id)
+let hituet = 0
+let teks = `⬣ *LIST GROUP BY Ramah*\n\nTotal Group : ${anu.length} Group\n\n`
+for (let x of anu) {
+let metadata2 = await haikal.groupMetadata(x)
+teks += `❏ Group Ke ${hituet+=1}\n│⭔ *NAMA :* ${metadata2.subject}\n│⭔ *ID :* ${metadata2.id}\n│⭔ *MEMBER :* ${metadata2.participants.length}\n╰────|\n\n`
+}
+reply(teks + `Untuk Penggunaan Silahkan Ketik Command ${prefix}pushkontakv1 id|teks\n\nSebelum Menggunakan Silahkan Salin Dulu ID Group Nya Di Atas`)
+}
+break
+
+case "pushkontakid":{
+if (!isOwner) return reply(`Khusus Bang Fann`)
+if (isGroup) return reply(mess.only.private)
+if (!text) return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini\n${prefix+command} idgroup|tekspushkontak\nUntuk Liat Id Group Silahkan Ketik .cekidgc`)
+reply(mess.wait)
+const groupMetadataa = !isGroup? await haikal.groupMetadata(`${text.split("|")[0]}`).catch(e => {}) : ""
+const participants = !isGroup? await groupMetadataa.participants : ""
+const halls = await participants.filter(v => v.id.endsWith('.net')).map(v => v.id)
+global.tekspushkon = text.split("|")[1]
+if (isContacts) return
+for (let mem of halls) {
+if (isContacts) return
+contacts.push(mem)
+fs.writeFileSync('./all/database/contacts.json', JSON.stringify(contacts))
+if (/image/.test(mime)) {
+media = await Ramah downloadAndSaveMediaMessage(quoted)
+memk = await uptotelegra(media)
+await haikal.sendMessage(mem, { image: { url: memk }, caption: global.tekspushkon })
+await sleep(3000)
+} else {
+await haikal.sendMessage(mem, { text: global.tekspushkon })
+await sleep(3000)
+}
+}
+try {
+const uniqueContacts = [...new Set(contacts)];
+const vcardContent = uniqueContacts.map((contact, index) => {
+const vcard = [
+"BEGIN:VCARD",
+"VERSION:3.0",
+`FN:thomz[${createSerial(1)}] ${contact.split("@")[0]}`,
+`TEL;type=CELL;type=VOICE;waid=${contact.split("@")[0]}:+${contact.split("@")[0]}`,
+"END:VCARD",
+"", ].join("\n");
+return vcard; }).join("");
+fs.writeFileSync("./all/database/contacts.vcf", vcardContent, "utf8");
+} catch (err) {
+reply(util.format(err))
+} finally {
+await haikal.sendMessage(from, { document: fs.readFileSync("./all/database/contacts.vcf"), fileName: "contacts.vcf", caption: "Nih Kak Tinggal Pencet File Di Atas Terus Save", mimetype: "text/vcard", }, { quoted: m })
+contacts.splice(0, contacts.length)
+fs.writeFileSync("./all/database/contacts.json", JSON.stringify(contacts))
+}
+}
+break
+
+
 case 'self': {
 if (!isCreator) return m.reply(mess.OnlyOwner)
 global.public = false
