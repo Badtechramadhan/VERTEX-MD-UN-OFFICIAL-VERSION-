@@ -3424,7 +3424,62 @@ global.public = false
 m.reply('Sukses Change To Self Mode')
 }
 break
-
+case 'ringtone':
+    {
+//wm Ramah
+       async function RingTone(search) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { data } = await axios.get('https://meloboom.com/en/search/' + search)
+//wm Ramah
+            let $ = cheerio.load(data)
+            let hasil = []
+            $('#__next > main > section > div.jsx-2244708474.container > div > div > div > div:nth-child(4) > div > div > div > ul > li').each(function (a, b) {
+//wm Ramah
+                hasil.push({
+                    title: $(b).find('h4').text(), 
+                    source: 'https://meloboom.com/' + $(b).find('a').attr('href'), 
+                    audio: $(b).find('audio').attr('src')
+                })
+            })
+//wm Ramah
+            resolve(hasil)
+        } catch (err) {
+            console.error(err)
+            return []
+//wm Ramah
+        }
+    })
+}
+//wm Ramah
+//wm Ramah
+ if(!text) return m.reply('```🚩 Ramah Says Input query??```')
+  let yapit = await RingTone(text)
+//wm Ramah
+  let src = pickRandom(yapit)
+  let txt = `RAMAH SAGE RINGTONE
+❃ Title : ${src.title}
+❃ Source : ${src.source}
+  
+_wait ramah sage sending audio_`
+//wm Ramah
+  let ngawur = await Ramah.sendMessage(m.chat,{text: txt,mentions:[m.sender]},{quoted:m})
+  await sleep(3000)
+   //wm Ramah
+ Ramah.sendMessage(m.chat, {
+        audio: {
+        	url: src.audio
+        },
+//wm Ramah
+        mimetype: "audio/mpeg",
+        ptt: true
+        }, {
+        	quoted: ngawur
+        })
+ //wm Ramah         Ramah.sendMessage(m.chat, { react: { text: '✅', key: m.key }})
+}
+//wm Ramah
+break
 case 'public': {
 if (!isCreator) return m.reply(mess.OnlyOwner)
 global.public = true
