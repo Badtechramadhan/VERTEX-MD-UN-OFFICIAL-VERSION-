@@ -3483,10 +3483,79 @@ break
 case 'public': {
 if (!isCreator) return m.reply(mess.OnlyOwner)
 global.public = true
-m.reply('Sukses Change To Public Mode')
+m.reply('Success Change To Public Mode')
+}
+break
+case 'grupsearch': {
+  if (!text) return m.reply('Ramah Sage Says Enter a search query, for example: groupsearch india');
+  const cheerio = require('cheerio');
+  const axios = require('axios');
+// wm Ramah
+  async function skyZo(url) {
+    try {
+      const { data } = await axios.get(url);
+      const $ = cheerio.load(data);
+      const links = [];
+// wm Ramah
+      $('a.entry-image-link').each((index, element) => {
+        const href = $(element).attr('href');
+        if (href) {
+          links.push(href);
+        }
+      });
+// wm Ramah
+      return links;
+    } catch (error) {
+      console.error('Error fetching the page:', error);
+      return [];
+    }
+  }
+// wm Ramah
+  async function avoskyJ(url) {
+    try {
+      const { data } = await axios.get(url);
+      const $ = cheerio.load(data);
+      const links = [];
+      let counter = 1;
+// wm Ramah
+      $('a[href*="chat.whatsapp.com"]').each((index, element) => {
+        const href = $(element).attr('href');
+        if (href) {
+          links.push(`${counter}). ${href}`);
+          counter++;
+        }
+      });
+// wm Ramah
+      return links.length > 0 ? links.join('\n') : 'Tidak ada link WhatsApp.';
+    } catch (error) {
+      console.error('Error fetching the page:', error);
+      return 'Error.';
+    }
+  }
+// wm Ramah
+  const query = text.trim();
+  const searchUrl = `https://whatsgrouplink.com/?s=${encodeURIComponent(query)}`;
+// wm Ramah
+  skyZo(searchUrl).then(async links => {
+    if (links.length > 0) {
+// wm Ramah
+      const randomLink = links[Math.floor(Math.random() * links.length)];
+// wm Ramah
+      const result = await avoskyJ(randomLink);
+// wm avz
+      m.reply(`Link Selected Source: ${randomLink}\n\nLink WhatsApp groups found:\n${result}`);
+    } else {
+      m.reply('Tidak ada link yang.');
+    }
+  }).catch(error => {
+    console.error('Error:', error);
+    m.reply('There is an error 404 Errrrr Rrorr');
+  });
 }
 break
 
+
+		
 default:
 if (budy.startsWith('=>')) {
 if (!isCreator) return
