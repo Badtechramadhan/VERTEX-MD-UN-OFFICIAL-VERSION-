@@ -3707,6 +3707,80 @@ await Ramah.sendMessage(m.chat, { video: { url: down.data[2].url }, caption: ber
 await Ramah.sendMessage(m.chat, { audio: { url: down.music_info.url }, mimetype: "audio/mp4", ptt: true }, { quoted: m })
 }
 break
+case 'gpt4': {
+  if (!text) return m.reply(`Hey Buddy,This is Ramah Sage what can I do to help you please??`)
+async function openai(text, logic) { // Create an openai function to call
+    let response = await axios.post("https://chateverywhere.app/api/chat/", {
+        "model": {
+            "id": "gpt-4",
+            "name": "GPT-4",
+            "maxLength": 32000,  // Adjust token limit if necessary
+            "tokenLimit": 8000,  // Adjust token limit for model GPT-4
+            "completionTokenLimit": 5000,  // Adjust if necessary
+            "deploymentName": "gpt-4"
+        },
+        "messages": [
+            {
+                "pluginId": null,
+                "content": text, 
+                "role": "user"
+            }
+        ],
+        "prompt": logic, 
+        "temperature": 0.5
+    }, { 
+        headers: {
+            "Accept": "/*/",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+        }
+    });
+    
+    let result = response.data;
+    return result;
+}
+
+let Ramah = await openai(text, "Your name is Ramah Sage, you are an artificial intelligence assistant who often helps others if they have questions.")
+m.reply(Ramah)
+}
+break
+case 'vtuber': {
+if (!text) return reply(`Example ${prefix+command} the cowboy hat`)
+const { wiki } = require("vtuber-wiki");
+async function getVTuber(vtuber) {
+    try {
+        const result = await wiki(vtuber);
+        if (!result.image_url) return { error: "No such vTuber" };
+        return result;
+    } catch (err) {
+        return { error: "No such vTuber" };
+    }
+}
+try {
+let tuber = await getVTuber(text)
+let pituber = `[ *VERTEX VTUBER WIKI* ]
+
+Title: ${tuber.title}
+Link: ${tuber.url}
+Author: ${tuber.author}
+Account: ${tuber.account}
+Date: ${tuber.date}
+Type: ${tuber.type}
+Channel: ${tuber.channel}
+Social Media: ${tuber.social_media}
+Offcial Website: ${tuber.official_website}
+Gender: ${tuber.gender}
+Age: ${tuber.age}
+Description: ${tuber.description}
+More: ${tuber.more}
+`
+
+Ramah.sendMessage(m.chat, {image: {url: tuber.image_url}, caption: pituber}, {quoted: m})
+} catch (e) {
+  m.reply(e)
+}
+}
+break
+
 
 		
 default:
