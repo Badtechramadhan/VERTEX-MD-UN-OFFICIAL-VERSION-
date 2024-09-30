@@ -7,6 +7,7 @@ global.ownername = "Ramah Sage"
 global.pack = "VERTEX - MD"
 global.author = "RAMAH SAGE!!"
 global.channelname = "FREE SCRIPTS AND GIVEAWAY!!"
+global.idch = '120363335392141844@newsletter'
 global.channeljid = "120363335392141844@newsletter"
 global.linkgc = "https://chat.whatsapp.com/HnwIAeT8fl71pjE3ZvTpdX"
 global.linksl = "https://whatsapp.com/channel/0029VakZxvW8Pgs8FIrFQx0P"
