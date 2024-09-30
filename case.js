@@ -10,7 +10,8 @@ const moment = require('moment-timezone');
 const cheerio = require('cheerio');
 const yts = require ('yt-search');
 const didyoumean = require('didyoumean');
-const similarity = require('similarity')
+const similarity = require('similarity');
+const fg = require('api-dylux')
 const qs = require('qs');
 
 module.exports = async (Ramah, m) => {
@@ -3882,9 +3883,101 @@ await sleep(2000)
 Ramah.sendMessage(m.chat, { react: { text: '✅', key: m.key, }})
 }
 break		
+case'fbdl':  {
+if (!text) return m.reply(`Contoh: ${prefix+command} the link`)
+if (!text.includes('facebook.com')) return m.reply('Must be a Facebook link!')
+Ramah.sendMessage(m.chat, { react: { text: `🔎`, key: m.key }})
+/*try {
+let hua = await fetchJson(`https://skizo.tech/api/facebook?apikey=${skizo}&url=${text}`)
+return await ptz.sendMessage(m.chat, { video: { url: hua.media }, caption: `© ${wm}` }, { quoted: m })
+} catch (err) {
+console.error('Kesalahan pada API skizo.tech:', err)*/
+/*try {
+let anu = await bochil.snapsave(text)
+return await slimecode.sendMessage(m.chat, { video: { url: anu[0].url }, caption: `© ${wm}` }, { quoted: m })
+} catch (err) {
+console.error('Kesalahan pada bochil.snapsave:', err)*/
+try {
+let anu = await fg.fbdl(text)
+return await Ramah.sendMessage(m.chat, { video: { url: anu.videoUrl }, caption: `© ${wm}` }, { quoted: m })
+} catch (err) {
+console.error('Kesalahan pada dylux.fbdl:', err)
+/*try {
+let anu = await snapsave(text)
+return await ptz.sendMessage(m.chat, { video: { url: anu.links["Download High Quality"] }, caption: `© ${wm}` }, { quoted: m })
+} catch (err) {
+console.error('Kesalahan pada snapsave:', err)
+try {
+let anu = await snapsavev2(text)
+return await ptz.sendMessage(m.chat, { video: { url: anu.result[0].url }, caption: `© ${wm}` }, { quoted: m })
+} catch (err) {
+console.error('Kesalahan pada snapsavev2:', err)*/
+m.reply('There is an error')
+}}
 
+break
+case'ytmp4':
+case 'playmp4':
+ //   if (!isGroup) return onlyGroup()
+if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
+			reply(mess.wait)
+			axios.get(`https://api.lolhuman.xyz/api/ytvideo2?apikey=9174374619a0353273a70311&url=${args[0]}`)
+				.then(({ data }) => {
+				var caption = `❖ Title    : *${data.result.title}*\n`
+				caption += `❖ Size     : *${data.result.size}*`
+				Ramah.sendMessage(m.chat, { image: { url: data.result.thumbnail }, caption }).then(() => {
+						Ramah.sendMessage(m.chat, { video: { url: data.result.link }, mimetype: 'video/mp4', fileName: `${data.result.title}.mp4` })
+})
+})
+				.catch(console.error)
+break
+case'ytmp3' : {
+ if (!text) return reply('Enter Title / Link From YouTube!');
+ reply(mess.wait)
+ try {
+ 	let search = require("yt-search");
+let { youtube } = require("btch-downloader");
+ const look = await search(text);
+ const convert = look.videos[0];
+ if (!convert) return reply('Video/Audio Not found');
+ if (convert.seconds >= 3600) {
+ return reply(m.chat, 'Video is longer than 1 hour!');
+ } else {
+ let audioUrl;
+ try {
+ audioUrl = await youtube(convert.url);
+ } catch (e) {
+ reply(mess.wait)
+ audioUrl = await youtube(convert.url);
+ }
 
-
+ await 
+Ramah.sendMessage(m.chat, {
+ audio: {
+ url: audioUrl.mp3
+ },
+ mimetype: 'audio/mpeg',
+ contextInfo: {
+ externalAdReply: {
+ title: convert.title,
+ body: "",
+ thumbnailUrl: convert.image,
+ sourceUrl: audioUrl.mp3,
+ mediaType: 1,
+ showAdAttribution: true,
+ renderLargerThumbnail: true
+ }
+ }
+ }, {
+ quoted: m
+ });
+ }
+ } 
+ catch (e) {
+ reply(m.chat, `*Error:* ` + e.message);
+ }
+};
+break
 
 
 
