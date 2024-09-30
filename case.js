@@ -3780,7 +3780,39 @@ Ramah.sendMessage(m.chat, {image: {url: tuber.image_url}, caption: pituber}, {qu
 }
 }
 break
+case 'listgroup':
+case 'listgrup':
+case 'listgrup':
+case 'listgroub':
+case 'listgrub':
+case 'listgc':
+case 'gruplist':
+case 'groplist':
+case 'grouplist':
+if (!isCreator) return reply(mess.owner)
+let getallgrub = await Ramah.groupFetchAllParticipating();
+async function formatGrup(index, grup) {
+    let response2 = '-';
+    let link_grouplist = '';
+try {
+response2 = await autoresbot.groupInviteCode(grup.id);
+    link_grouplist = `https://chat.whatsapp.com/${response2}`;
+} catch{
+    link_grouplist = '-'
+}
+return `╭─「 ${index} 」 *${grup.subject}*
+│ Anggota : ${grup.participants.length}
+│ ID Grub : ${grup.id}
+│ Link    : ${link_grouplist}
+╰─────────────────────
+©𝐑𝖆𝖒𝖆𝖍 𝕾𝖆𝖌𝖗 𝕿𝖍𝖊 𝖆𝖑𝖕𝖍𝖆`;
+}
+const grupTerurut = Object.values(getallgrub).sort((a, b) => b.participants.length - a.participants.length);
+let nomorUrut = 0;
+const listGrupString = await Promise.all(grupTerurut.map((grup) => formatGrup(++nomorUrut, grup)));
 
+return reply(`_*Total Group : ${nomorUrut}*_ \n\n`+listGrupString.join('\n\n'));
+break;
 
 		
 default:
