@@ -49,6 +49,7 @@
     "moment-timezone": "^0.5.43",
     "mongoose": "^6.2.1",
     "node-fetch": "^2.6.11",
+    "node-youtube-music": "^0.8.3",
     "node-webpmux": "^3.1.7",
     "node-yt-dl": "^2.2.4",
     "nodemailer": "*",
@@ -61,6 +62,6 @@
     "util": "^0.12.5",
     "wa-sticker-formatter":   "^4.4.4",
     "yargs": "^17.7.2",
-    "yt-search": "^2.12.1"
+    "yt-search": "^2.10.2"
   }
 }
