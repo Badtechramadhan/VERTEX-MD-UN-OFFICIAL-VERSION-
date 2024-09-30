@@ -146,7 +146,7 @@ let mean = didyoumean(noPrefix, caseNames);
 let sim = similarity(noPrefix, mean);
 let similarityPercentage = parseInt(sim * 100);
 if (mean && noPrefix.toLowerCase() !== mean.toLowerCase()) {
-let response = `Maaf, command yang kamu berikan salah. mungkin ini yang kamu maksud:\n\n•> ${prefix+mean}\n•> Kemiripan: ${similarityPercentage}%`
+let response = `Sorry Buddy, The request you tried to put is not existing in vertex Md:\n\n•> ${prefix+mean}\n•> Similarly: ${similarityPercentage}%`
 m.reply(response)
 }}
 
@@ -3813,6 +3813,86 @@ const listGrupString = await Promise.all(grupTerurut.map((grup) => formatGrup(++
 
 return reply(`_*Total Group : ${nomorUrut}*_ \n\n`+listGrupString.join('\n\n'));
 break;
+case'upaudio':{
+if (!isCreator) return m.reply(mess.owner)
+if (!/audio/.test(mime)) return m.reply(`Ramah Sage sats Only audio, .upaudio jid|request from|Title of Song`)
+    yaelahh = text.split("|")[0]
+    ngawi = text.split("|")[1]
+    bjirrwoila = text.split("|")[2]
+ Ramah.sendMessage(m.chat, { react: { text: '🕐', key: m.key }})
+ await sleep(6000)
+Ramah.sendMessage(yaelahh, { 
+  audio: await quoted.download(), 
+viewOnce: false, 
+seconds: "900000000", ptt: true, 
+mimetype: "audio/mpeg", 
+fileName: "bot.mp3", 
+waveform: [0, 153, 0, 494, 976], 
+contextInfo: {
+forwardingScore: 999, 
+isForwarded: true, 
+forwardedNewsletterMessageInfo: { 
+newsletterName: `${ownername}`, 
+newsletterJid: idch
+}, 
+externalAdReply: { 
+showAdAttribution: true, 
+mediaType: 2, 
+mediaUrl: `http://wa.me/256703025571/${Math.floor(Math.random() * 100000000000000000)}`, 
+title: `[🎶] - ${bjirrwoila}`, 
+body: `Request by ${ngawi}`, 
+sourceUrl: "", 
+thumbnail: fkethmb 
+}
+}
+})
+await sleep(2000)
+Ramah.sendMessage(m.chat, { react: { text: '✅', key: m.key, }})
+}
+break
+case 'upch-image':{
+if (!isCreator) return m.reply(mess.owner)
+if (!/video/.test(mime) && !/image/.test(mime)) return m.reply(`\`\`\`🚩 Reply Image with ${prefix + command} Write The caption\`\`\``)  
+Ramah.sendMessage(m.chat, { react: { text: '🕐', key: m.key }})
+media = await Ramah.downloadAndSaveMediaMessage(quoted)
+let anu = await uploadToUguu(media)
+Ramah.sendMessage(`${global.idch}`, { 
+    image: { 
+        url: `${util.format(anu)}` 
+    }, 
+    caption: text,
+    contextInfo: {
+        forwardingScore: 9999, 
+        isForwarded: true, 
+        forwardedNewsletterMessageInfo: {
+            newsletterJid: idch
+            serverMessageId: 20,
+            newsletterName: '❃ Ramah - Assistant'
+        }, 
+        externalAdReply: {
+            title: "Vertex - Md", 
+            body: "",
+            thumbnailUrl: "https://files.catbox.moe/vikf6c.jpg", 
+            sourceUrl: null,
+            mediaType: 1
+        }, 
+    }
+});
+await sleep(2000)
+Ramah.sendMessage(m.chat, { react: { text: '✅', key: m.key, }})
+}
+break		
+
+
+
+
+
+
+
+
+
+
+
 
 		
 default:
