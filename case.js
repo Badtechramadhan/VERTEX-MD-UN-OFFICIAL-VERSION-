@@ -5,13 +5,13 @@ const os = require('os')
 const fs = require('fs')
 const util = require('util')
 const request = require('request')
-const maker = require('mumaker')
+/*const maker = require('mumaker')*/
 const fetch = require('node-fetch')
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 const fsx = require('fs-extra')
 const googleTTS = require('google-tts-api')
-const fsx = require('fs-extra')
+/*const fsx = require('fs-extra')*/
 const axios = require('axios')
 const { exec } = require("child_process")
 const chalk = require('chalk')
@@ -24,8 +24,8 @@ const similarity = require('similarity')
 const fg = require('api-dylux')
 const speed = require('performance-now')
 const { performance } = require('perf_hooks')
-const {translate} = require('@vitalets/google-translate-api')
-const { exec, spawn, execSync } = require('child_process')
+/*const {translate} = require('@vitalets/google-translate-api')
+const { exec, spawn, execSync } = require('child_process')*/
 const qs = require('qs')
 const {
     toAudio,
@@ -45,7 +45,7 @@ module.exports = async (Ramah, m) => {
 try {
 const from = m.key.remoteJid
 const botNumber = await Ramah.decodeJid(Ramah.user.id)
-const Ramah = isOwner = [botNumber, ...owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+/*const Ramah = isOwner = [botNumber, ...owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)*/
 var body = (m.mtype === 'interactiveResponseMessage') ? JSON.parse(m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson).id : (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype == 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ""
 
 const { smsg, fetchJson, getBuffer, fetchBuffer, getGroupAdmins, isUrl, hitungmundur, sleep, clockString, checkBandwidth, runtime, tanggal, getRandom } = require('./lib/myfunc')
@@ -58,7 +58,7 @@ const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLo
 const args = body.trim().split(/ +/).slice(1)
 const text = q = args.join(" ")
 const sender = m.key.fromMe ? (Ramah.user.id.split(':')[0]+'@s.whatsapp.net' || Ramah.user.id) : (m.key.participant || m.key.remoteJid)
-const botNumber = await Ramah.decodeJid(Ramah.user.id)
+/*const botNumber = await Ramah.decodeJid(Ramah.user.id)*/
 const senderNumber = sender.split('@')[0]
 const isCreator = (m && m.sender && [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)) || false;
 const pushname = m.pushName || `${senderNumber}`
