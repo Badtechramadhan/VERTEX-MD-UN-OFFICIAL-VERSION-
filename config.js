@@ -8,6 +8,7 @@ global.pack = "VERTEX - MD"
 global.author = "RAMAH SAGE!!"
 global.channelname = "FREE SCRIPTS AND GIVEAWAY!!"
 global.prefix = '.'
+global.wm = 'Ramah'
 global.setv = '🝤'
 global.idch = '120363335392141844@newsletter'
 global.channeljid = "120363335392141844@newsletter"
