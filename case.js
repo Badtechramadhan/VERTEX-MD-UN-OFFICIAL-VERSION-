@@ -223,12 +223,12 @@ let anu = `
 ╭──❍「 *GREETING* 」❍
 ├ *Hello👋*
 ├ USER :  *${m.pushName}* 
-├ OWNER : *${global.owner} ✨* 
+├ OWNER : *${global.ownername} ✨* 
 ╰─┬────❍ ${readmore}
 ╭─┴❍「 *GUIDE* 」❍
 ├ |. THIS BOT WAS CREATED 
 ├ |BY RAMAH SAGE. 
-├ | +256788028745
+├ | *${global.namabot}*
 ╰─┬────❍
 ╭─┴❍「 *𝐌𝐄𝐍𝐔 𝐓𝐎𝐎𝐋𝐒* 」❍
 │${setv} ${prefix}play
