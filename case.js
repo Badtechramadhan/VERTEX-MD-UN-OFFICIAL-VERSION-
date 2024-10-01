@@ -3983,7 +3983,7 @@ try {
 let anu = await fg.fbdl(text)
 return await Ramah.sendMessage(m.chat, { video: { url: anu.videoUrl }, caption: `© ${wm}` }, { quoted: m })
 } catch (err) {
-console.error('Kesalahan pada dylux.fbdl:', err)
+console.error('Error on Ramah.fbdl:', err)
 /*try {
 let anu = await snapsave(text)
 return await ptz.sendMessage(m.chat, { video: { url: anu.links["Download High Quality"] }, caption: `© ${wm}` }, { quoted: m })
