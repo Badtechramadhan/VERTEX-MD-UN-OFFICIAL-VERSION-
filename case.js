@@ -3948,7 +3948,7 @@ Ramah.sendMessage(`${global.idch}`, {
         forwardingScore: 9999, 
         isForwarded: true, 
         forwardedNewsletterMessageInfo: {
-            newsletterJid: idch
+            newsletterJid: idch,
             serverMessageId: 20,
             newsletterName: '❃ Ramah - Assistant'
         }, 
