@@ -224,6 +224,7 @@ let anu = `
 ├ *Hello👋*
 ├ USER :  *${m.pushName}* 
 ├ OWNER : *${global.ownername} ✨* 
+| *RUN TIME* : ${runtime(process.uptime())}
 ╰─┬────❍ ${readmore}
 ╭─┴❍「 *GUIDE* 」❍
 ├ |. THIS BOT WAS CREATED 
