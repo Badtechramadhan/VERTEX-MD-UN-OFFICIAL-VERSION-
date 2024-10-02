@@ -224,7 +224,7 @@ let anu = `
 ├ *Hello👋*
 ├ USER :  *${m.pushName}* 
 ├ OWNER : *${global.ownername} ✨* 
-| *RUN TIME* : ${runtime(process.uptime())}
+├*RUNTIME* : ${runtime(process.uptime())}
 ╰─┬────❍ ${readmore}
 ╭─┴❍「 *GUIDE* 」❍
 ├ |. THIS BOT WAS CREATED 
@@ -292,7 +292,7 @@ let anu = `
 │${setv} ${prefix}
 │${setv} ${prefix}
 │${setv} ${prefix}
-╰─┬────❍
+╰─┬────❍ ${readmore}
 ╭─┴❍「 *MENU AI* 」❍
 │${setv} ${prefix}gemini
 │${setv} ${prefix}morphic
@@ -320,7 +320,7 @@ let anu = `
 │${setv} ${prefix}putar
 │${setv} ${prefix}yesorno
 │${setv} ${prefix}brutal
-╰─┬────❍
+╰─┬────❍ ${readmore}
 ╭─┴❍「 *MENU CHANGER* 」❍
 │${setv} ${prefix}bass
 │${setv} ${prefix}fat
