@@ -232,6 +232,7 @@ let anu = `
 ╰─┬────❍
 ╭─┴❍「 *𝐌𝐄𝐍𝐔 𝐓𝐎𝐎𝐋𝐒* 」❍
 │${setv} ${prefix}play
+│${setv} ${prefix}appvn
 │${setv} ${prefix}upaudio 
 │${setv} ${prefix}ytpm3 
 │${setv} ${prefix}ytmp4 
@@ -497,7 +498,98 @@ let messageContent = generateWAMessageFromContent(m.chat, {
     return await Ramah.relayMessage(m.chat, messageContent.message, {})
  }
 break;
+case 'appvn': {
+//wm Ramah
+async function searchAppVn(query) {
+const link = "https://appvn.com"
+  const response = await fetch(link + "/android/search?keyword=" + query); // Ganti URL dengan URL yang sesuai
+  const body = await response.text();
+//wm Ramah
+  const $ = cheerio.load(body);
+  const resultArray = [];
+//wm Ramah
+  $("div.section-content li.item").each((index, element) => {
+    const item = {
+      title: $(element).find("div.info > a").text().trim(),
+      url: link + $(element).find("div.info > a").attr("href"),
+      image: $(element).find("img.lazy").attr("data-src"),
+//wm senn
+      version: $(element).find("div.vol-chap.ver.text-left > p:first-child").text().trim(),
+      date: $(element).find("div.vol-chap.ver.text-left > p.new-chap").text().trim(),
+      author: $(element).find("div.new-chap.author > a").text().trim(),
+      detailLink: link + $(element).find("div.btn.btn-download > a").attr("href"),
+    };
+//wm Ramah
+    resultArray.push(item);
+  });
+//wm Ramah
+  return resultArray;
+}
+if (!text) return m.reply('```🚩 Example : .appvn dreamleague```')
+//wm Ramah
+m.reply('wait a minute...')
+let results = await searchAppVn(text)
+if (results.length > 0) {
+let message = 'Hasil pencarian:\n\n';
+//wm Ramah
+results.forEach((result, index) => {
+message += `Title : ${result.title}\nVersi : ${result.version}\nDeveloper : ${result.author}\nUrl : ${result.url}\n\n`;
+ });
+//wm Ramah
+m.reply(message)
+ } else {
+m.reply('No result.');
+}
+//wm Ramah
+}
+break
+case 'addcase': {
+ if (!isCreator) return reply('who are you dog?)
+ if (!text) return reply('Where's the case?);
+    const fs = require('fs');
+const namaFile = 'Ganyu.js';
+const caseBaru = `${text}`;
+fs.readFile(namaFile, 'utf8', (err, data) => {
+    if (err) {
+        console.error('An error occurred while reading the file:', err);
+        return;
+    }
+    const posisiAwalGimage = data.indexOf("case 'addcase':");
 
+    if (posisiAwalGimage !== -1) {
+        const kodeBaruLengkap = data.slice(0, posisiAwalGimage) + '\n' + caseBaru + '\n' + data.slice(posisiAwalGimage);
+        fs.writeFile(namaFile, kodeBaruLengkap, 'utf8', (err) => {
+            if (err) {
+                reply('An error occurred while writing the file:', err);
+            } else {
+                reply('New case successfully added.');
+            }
+        });
+    } else {
+        reply('Cannot add case in file.');
+    }
+});
+
+}
+break
+case 'yts': case 'ytsearch': {
+if (!text) throw `Example : ${prefix + command} story wa anime`
+let search = await yts(text)
+let teks = '*YouTube Search*\n\nResult From '+text+'\nketik *getmusic* untuk mengambil mp3 dan *getvideo* untuk mp4\ngunakan dengan nomor urutan, contoh *getmusic 1*\n\n'
+let no = 1
+for (let i of search.all) {
+teks += `⭔ No Urutan : ${no++}\n⭔ Type : ${i.type}\n⭔ Video ID : ${i.videoId}\n⭔ Title : ${i.title}\n⭔ Views : ${i.views}\n⭔ Duration : ${i.timestamp}\n⭔ Upload At : ${i.ago}\n⭔ Url : ${i.url}\n─────────────────\n`
+}
+Ramah.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+}
+break
+
+
+
+
+
+		
+		
 case 'tiktoksearch':
 case 'ttsearch': {
     const dann = require('d-scrape')
