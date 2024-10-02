@@ -27,6 +27,7 @@
     "api-dylux": "latest",
     "canvafy": "latest",
     "axios": "^1.6.8",
+    "async": "latest",
     "api-dylux": "latest",
     "btch-downloader": "latest",
     "canvas": "^2.11.2",
