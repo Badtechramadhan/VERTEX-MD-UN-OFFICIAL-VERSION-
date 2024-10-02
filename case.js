@@ -282,9 +282,15 @@ let anu = `
 │${setv} ${prefix}quote
 │${setv} ${prefix}npm
 │${setv} ${prefix}npmstalk
-│${setv} $ 
-│${setv} > 
-│${setv} < 
+│${setv} ${prefix}del
+│${setv} ${prefix}yts
+│${setv} ${prefix}addcase 
+│${setv} ${prefix}appvn
+│${setv} ${prefix}
+│${setv} ${prefix}
+│${setv} ${prefix}
+│${setv} ${prefix}
+│${setv} ${prefix}
 ╰─┬────❍
 ╭─┴❍「 *MENU AI* 」❍
 │${setv} ${prefix}gemini
@@ -4152,7 +4158,10 @@ Ramah.sendMessage(m.chat, {
  }
 };
 break
-
+case 'd': case 'del': case 'delete': case 'hapus':
+if (!m.quoted) return reply('Reply pesan yang ingin dihapus!')
+Ramah.sendMessage(from, {delete: {remoteJid: from, id: m.quoted.id, fromMe: m.quoted.fromMe, participant: m.quoted.sender }})
+break
 
 
 
