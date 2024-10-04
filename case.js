@@ -579,6 +579,39 @@ fs.readFile(namaFile, 'utf8', (err, data) => {
 
 }
 break
+case 'ai-logic':{
+//if (!isCreator) reply('This is RAMAH SAGE how can I help you')
+         if(!text) return m.reply('Hlo hope you are fyn this is Ramah Sage How can I help you??');
+         try {
+        let logic = 'THIS IS RAMAH SAGE' //The logic is up to you as long as it connects and makes sense   
+      await Ramah.sendMessage(m.chat, { react: { text: "💬", key: m.key } }); 
+//wm Ramah       
+        let aii = await fetchJson(`https://widipe.com/ai/c-ai?prompt=${logic}&text=${text}`);
+          await Ramah.sendMessage(m.chat, { text: aii.result,
+            contextInfo: { 
+              mentions: [m.sender],
+                externalAdReply: {
+                  showAdAttribution: true,
+                    title: `R A M A H  -  A I`,//This can be changed as you wish 
+                    body: '',
+                    thumbnailUrl: "https://e.top4top.io/p_3197kprnb1.jpg",//gambar pun terserah yo
+                    sourceUrl: "https://github.com/tanakasenn",
+                    mediaType: 1,
+                    renderLargerThumbnail: true
+                    }
+                  }
+                },
+//wm Ramah
+             { quoted : m }
+           )
+        } catch ( err ) {
+        console.error(err);
+       await Ramah.sendMessage(m.chat, { react: { text: "❌", key: m.key } });                
+       m.reply("lol sis it will be right later");
+     }
+//wm Ramah
+   }
+ break		
 case 'ssweb':{
 			if (!isCreator) reply('Your not Ramah Sage')
 //wm Ramah
