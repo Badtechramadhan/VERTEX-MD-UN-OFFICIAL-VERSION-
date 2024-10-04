@@ -334,7 +334,7 @@ let anu = `
 │${setv} ${prefix}slow
 │${setv} ${prefix}smooth
 │${setv} ${prefix}squirrel 
-│${setv} ${prefix}
+│${setv} ${prefix}ssweb
 │${setv} ${prefix}
 │${setv} ${prefix}
 │${setv} ${prefix}
@@ -552,9 +552,9 @@ m.reply('No result.');
 break
 case 'addcase': {
  if (!isCreator) return reply('who are you dog?)
- if (!text) return reply('Where's the case?);
+ if (!text) return reply('Where is the case?');
     const fs = require('fs');
-const namaFile = 'Ganyu.js';
+const namaFile = 'case.js';
 const caseBaru = `${text}`;
 fs.readFile(namaFile, 'utf8', (err, data) => {
     if (err) {
@@ -578,6 +578,16 @@ fs.readFile(namaFile, 'utf8', (err, data) => {
 });
 
 }
+break
+case 'ssweb':{
+			if (!isCreator) reply('Your not Ramah Sage')
+//wm Ramah
+				if (!text) return m.reply(`Example: ${prefix + command} https://xxxxxxxxxxxxx`)
+			let skrinsut = 'https://rest-api-plugins.vercel.app/api/ssweb?apikey=yo&url=' + q;
+//wm Ramah
+		await Ramah.sendMessage(m.chat, { image: { url: skrinsut }, caption: 'Done' }, { quoted: m })
+//wm Ramah
+		}
 break
 case 'yts': case 'ytsearch': {
 if (!text) throw `Example : ${prefix + command} story wa anime`
