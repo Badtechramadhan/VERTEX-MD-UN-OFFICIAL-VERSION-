@@ -336,7 +336,7 @@ let anu = `
 │${setv} ${prefix}smooth
 │${setv} ${prefix}squirrel 
 │${setv} ${prefix}ssweb
-│${setv} ${prefix}
+│${setv} ${prefix}faketweet
 │${setv} ${prefix}
 │${setv} ${prefix}
 ╰──────❍`
@@ -1049,7 +1049,24 @@ try {
 }
 }
 break
-        
+case 'faketweet':{
+const canvafy = require('canvafy')
+if (!text) return m.reply(`Exmaple : Name1 | Name2 | Text`)
+ name1 = text.split("|")[0]
+ name2 = text.split("|")[1]
+ katakata = text.split("|")[2]
+const tweet = await new canvafy.Tweet()
+  .setTheme("dim")
+  .setUser({displayName: name1, username: name2})
+  .setVerified(true)
+  .setComment(katakata)
+  .setAvatar(ppnyauser)
+  .build();
+ let tanaka = tweet
+  Ramah.sendMessage(m.chat, { image: tanaka, caption: 'Done VERTEX-MD by RamahSage~' },{ quoted : m })     
+}
+break
+	
         case 'steamsearch': {
   if (!q) return reply("Example: .steamsearch honkai impact")
 async function Steam(search) {
