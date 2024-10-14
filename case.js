@@ -1,3 +1,4 @@
+
 require("./config")
 const { WA_DEFAULT_EPHEMERAL, getAggregateVotesInPollMessage, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, downloadContentFromMessage, areJidsSameUser, getContentType, useMultiFileAuthState, makeWASocket, fetchLatestBaileysVersion, makeCacheableSignalKeyStore, makeWaSocket } = require("@whiskeysockets/baileys")
 const nodemailer = require('nodemailer')
@@ -551,7 +552,7 @@ m.reply('No result.');
 }
 break
 case 'addcase': {
- if (!isCreator) return reply('who are you dog?)
+ if (!isCreator) return reply('who are you dog?')
  if (!text) return reply('Where is the case?');
     const fs = require('fs');
 const namaFile = 'case.js';
